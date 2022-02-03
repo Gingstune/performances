@@ -1,3 +1,5 @@
+ps:scale web=1;
+web: python app.py
 web: flask db upgrade; 
 flask translate compile; 
-gunicorn performances:app
+gunicorn app:app
