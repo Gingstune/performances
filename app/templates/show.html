@@ -1,0 +1,63 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<h1>{{ name }}</h1>
+<p>
+    Author: {{ author[0] }} {{ author[1] }}
+</p>
+<hr>
+<p>
+    Theatre: {{ theatre[0] }}
+</p>
+<p>
+    Address: {{ theatre[1] }}
+</p>
+<hr>
+<p>
+    Roles:
+    {% for role in roles %}
+<p>{{ role[0] }} - {{ role[1] }} {{ role[2] }}</p>
+    {% endfor %}
+</p>
+<hr>
+    <p>
+        Rate: {{ rate }}
+    </p>
+    <hr>
+    <p>
+        Reviews of the performance:
+        <hr>
+        {% for text in texts %}
+
+            <p>
+                {{ text[0]}} 
+                - the user has put a rating: {{ text[1] }}
+            <p>
+                {{ text[2]}}
+            </p>
+            <p>
+                (the review was left on {{ text[3]}})
+            </p>
+            <hr>
+
+    </p>
+
+    {% endfor %}
+    </p>
+    {% if current_user.is_authenticated %}
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.review.label }}
+            <br>
+            {{ form.review(size=50) }}
+            <br>
+        </p>
+        <p>
+            {{ form.value.label }}<br>
+            {{ form.value(size=5) }}<br>
+
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% endif %}
+    {% endblock %}

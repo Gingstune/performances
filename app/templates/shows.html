@@ -1,0 +1,8 @@
+﻿{% extends "base.html" %}
+{% block content %}
+{% for show in shows %}
+<p>
+    <a href="{{ url_for('show', show=shows[loop.index0]) }}"> {{ show[0]}}</a>
+</p>
+    {% endfor %}
+{% endblock %}
