@@ -55,6 +55,7 @@ def login():
             else:
                 flash(user[1])
                 flash(passw)
+                flash(check_password_hash(user[1], passw))
                 if(check_password_hash(user[1], passw)==True):
                     id=user[5]
                     user = User(id)
