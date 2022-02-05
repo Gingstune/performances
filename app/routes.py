@@ -13,12 +13,7 @@ from app.forms import LoginForm, RegisterForm, InfoForm, RateForm
 from werkzeug.security import generate_password_hash, check_password_hash
 try:
     # Подключение к существующей базе данных
-    connection = psycopg2.connect(user="postgres",
-                                  # пароль, который указали при установке PostgreSQL
-                                  password="1",
-                                  host="127.0.0.1",
-                                  port="5432",
-                                  database="performance")
+    connection = psycopg2.connect(dbname='dfqrf87mejqnu', user='htwetorqevesbe', password='0c3d4b4864738605fc77e4b3a43d902d8fea077ec7d93d701eea9b253c79162f', host='ec2-18-235-114-62.compute-1.amazonaws.com')
 except:
     print("Ошибка при работе с PostgreSQL")
     
