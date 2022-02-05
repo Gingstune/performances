@@ -51,7 +51,7 @@ def login():
             cursor.execute('SELECT * FROM public.user where nickname=\'{nickname}\''.format(nickname=username))
             user=cursor.fetchone()
             if(user==None):
-                flash('Неправильно введены данные, повторите попытку.')
+                flash('Не правильно введены данные, повторите попытку.')
             else:
                 if(check_password_hash(user[1], passw)==True):
                     id=user[5]
