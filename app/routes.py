@@ -51,11 +51,8 @@ def login():
             cursor.execute('SELECT * FROM public.user where nickname=\'{nickname}\''.format(nickname=username))
             user=cursor.fetchone()
             if(user==None):
-                flash('Не правильно введены данные, повторите попытку. 1 ')
+                flash('Не правильно введены данные, повторите попытку.')
             else:
-                flash(user[1])
-                flash(passw)
-                flash(check_password_hash(user[1], passw))
                 if(check_password_hash(user[1], passw)==True):
                     id=user[5]
                     user = User(id)
@@ -63,7 +60,7 @@ def login():
                     if(current_user.is_authenticated):
                         return redirect(url_for('index'))
                 else:
-                    flash('Неправильно введены данные, повторите попытку. 2')
+                    flash('Неправильно введены данные, повторите попытку.')
         except:
             flash('Неправильно введены данные, повторите попытку.')
     return render_template('login.html', title='Sign In', form=form)
@@ -87,18 +84,16 @@ def register():
                 cursor.execute('Select Max(id_user) from public.user')
                 id_user=cursor.fetchone()[0]+1 #Id для нового пользователя
                 try:
-                    flash(1)
                     passw=generate_password_hash(passw, "sha256")
-                    flash(passw)
                     cursor.execute('INSERT INTO public.user(nickname, passw, first_name, second_name, birthday, id_user, info) VALUES (\'{nickname}\',\'{passw}\',\'{first_name}\',\'{second_name}\',\'{birthday}\', \'{id_user}\', \'{info}\')'.format(nickname=username, passw=passw, first_name=first_name, second_name=second_name, birthday=birthday, id_user = id_user, info = info))            
                     connection.commit()
                     return redirect(url_for('login'))
                 except Exception:
-                    flash('Ошибка, неправильно введены данные 1')
+                    flash('Ошибка, неправильно введены данные')
             else:
                 flash('Имя пользователя уже занято')
         except:
-            flash('Ошибка, не правильно введены данные 2 ')
+            flash('Ошибка, не правильно введены данные')
     return render_template('register.html', error=error, form=form)
 
 @app.route('/show/<show>', methods=['GET','POST'])

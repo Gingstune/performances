@@ -12,7 +12,7 @@ class RegisterForm(FlaskForm):
     passw = PasswordField('Password', validators=[DataRequired()])
     first_name = StringField('First name', validators=[DataRequired()])
     second_name = StringField('Second name', validators=[DataRequired()])
-    birthday = StringField('Birthday', validators=[DataRequired()])
+    birthday = StringField('Birthday (YYYY-MM-DD)', validators=[DataRequired()])
     info = StringField('About you')
     submit = SubmitField('Register')
     
