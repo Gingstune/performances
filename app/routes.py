@@ -156,7 +156,10 @@ def user(username):
 
 @app.route("/shows", methods=["GET", "POST"])
 def shows():
-    cursor.execute('SELECT show_name FROM public.show')
+    try:
+        cursor.execute('SELECT show_name FROM public.show')
+    except:
+            connection.rollback()
     shows = cursor.fetchall()
     return render_template('shows.html', shows=shows )
 
