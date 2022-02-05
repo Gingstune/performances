@@ -87,6 +87,9 @@ def register():
                     passw=generate_password_hash(passw, "sha256")
                     cursor.execute('INSERT INTO public.user(nickname, passw, first_name, second_name, birthday, id_user, info) VALUES (\'{nickname}\',\'{passw}\',\'{first_name}\',\'{second_name}\',\'{birthday}\', \'{id_user}\', \'{info}\')'.format(nickname=username, passw=passw, first_name=first_name, second_name=second_name, birthday=birthday, id_user = id_user, info = info))            
                     connection.commit()
+                    id=id_user
+                    user = User(id)
+                    login_user(user)
                     return redirect(url_for('login'))
                 except Exception:
                     flash('Ошибка, неправильно введены данные')
