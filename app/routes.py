@@ -53,6 +53,8 @@ def login():
             if(user==None):
                 flash('Не правильно введены данные, повторите попытку. 1 ')
             else:
+                flash(user[1])
+                flash(passw)
                 if(check_password_hash(user[1], passw)==True):
                     id=user[5]
                     user = User(id)
@@ -84,7 +86,9 @@ def register():
                 cursor.execute('Select Max(id_user) from public.user')
                 id_user=cursor.fetchone()[0]+1 #Id для нового пользователя
                 try:
+                    flash(1)
                     passw=generate_password_hash(passw, "sha256")
+                    flash(passw)
                     cursor.execute('INSERT INTO public.user(nickname, passw, first_name, second_name, birthday, id_user, info) VALUES (\'{nickname}\',\'{passw}\',\'{first_name}\',\'{second_name}\',\'{birthday}\', \'{id_user}\', \'{info}\')'.format(nickname=username, passw=passw, first_name=first_name, second_name=second_name, birthday=birthday, id_user = id_user, info = info))            
                     connection.commit()
                     return redirect(url_for('login'))
