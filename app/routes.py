@@ -51,7 +51,7 @@ def login():
             cursor.execute('SELECT * FROM public.user where nickname=\'{nickname}\''.format(nickname=username))
             user=cursor.fetchone()
             if(user==None):
-                flash('Не правильно введены данные, повторите попытку.')
+                flash('Не правильно введены данные, повторите попытку. 1 ')
             else:
                 if(check_password_hash(user[1], passw)==True):
                     id=user[5]
@@ -60,7 +60,7 @@ def login():
                     if(current_user.is_authenticated):
                         return redirect(url_for('index'))
                 else:
-                    flash('Неправильно введены данные, повторите попытку.')
+                    flash('Неправильно введены данные, повторите попытку. 2')
         except:
             flash('Неправильно введены данные, повторите попытку.')
     return render_template('login.html', title='Sign In', form=form)
@@ -89,11 +89,11 @@ def register():
                     connection.commit()
                     return redirect(url_for('login'))
                 except Exception:
-                    flash('Ошибка, неправильно введены данные')
+                    flash('Ошибка, неправильно введены данные 1')
             else:
                 flash('Имя пользователя уже занято')
         except:
-            flash('Ошибка, не правильно введены данные')
+            flash('Ошибка, не правильно введены данные 2 ')
     return render_template('register.html', error=error, form=form)
 
 @app.route('/show/<show>', methods=['GET','POST'])
