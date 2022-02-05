@@ -63,7 +63,7 @@ def login():
                     flash('Неправильно введены данные, повторите попытку.')
         except:
             flash('Неправильно введены данные, повторите попытку.')
-    return render_template('Login.html', title='Sign In', form=form)
+    return render_template('login.html', title='Sign In', form=form)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
